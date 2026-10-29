@@ -1,6 +1,5 @@
 frontend/node_modules
 frontend/dist
-frontend-old
 **/__pycache__
 **/.env
 e2e

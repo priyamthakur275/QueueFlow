@@ -17,7 +17,7 @@ With **Wayzen**, a RAG assistant that cites its sources and only books after you
 
 </div>
 
-> The free Render instance sleeps when idle, so the first load can take about 30–50 seconds.
+> Kept warm by a scheduled GitHub Action, so the demo opens fast.
 
 ## ✨ Highlights
 
