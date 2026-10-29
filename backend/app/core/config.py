@@ -63,7 +63,7 @@ class Settings(BaseSettings):
     EMBEDDING_MODEL: str = ""
     EMBEDDING_BASE_URL: str = "https://api.openai.com/v1"
     EMBEDDING_API_KEY: str = ""
-    LLM_PROVIDER: str = ""                # "", "anthropic" or "openai_compatible"
+    LLM_PROVIDER: str = ""                # "", "anthropic", "openai_compatible" or "gemini"
     LLM_MODEL: str = ""
     LLM_BASE_URL: str = ""
     LLM_API_KEY: str = ""
