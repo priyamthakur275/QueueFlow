@@ -1,8 +1,49 @@
-# QueueFlow
+<div align="center">
 
-Queue, appointment and reservation management for **hospitals, shops and hotels**,
-with **Wayzen**, a retrieval-augmented assistant that answers from cited sources and
-can prepare bookings that only execute after the user confirms.
+# ⏱️ QueueFlow
+
+**Real-time queues, appointments and reservations for hospitals, shops and hotels.**
+With **Wayzen**, a RAG assistant that cites its sources and only books after you confirm.
+
+[![Live Demo](https://img.shields.io/badge/Live_Demo-queueflow--dvqt.onrender.com-6366f1?style=for-the-badge&logo=render&logoColor=white)](https://queueflow-dvqt.onrender.com)
+
+![React](https://img.shields.io/badge/React_19-20232A?logo=react&logoColor=61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL_+_pgvector-4169E1?logo=postgresql&logoColor=white)
+![Redis](https://img.shields.io/badge/Redis-DC382D?logo=redis&logoColor=white)
+![WebSockets](https://img.shields.io/badge/WebSockets-realtime-black)
+![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)
+
+</div>
+
+> The free Render instance sleeps when idle, so the first load can take about 30–50 seconds.
+
+## ✨ Highlights
+
+| | |
+|---|---|
+| 🏥 **Three venue types** | Hospitals (specialization → doctor), shops (service → staff) and hotels (rooms) |
+| ⚡ **Live queue position** | WebSocket updates fanned out across instances through Redis Pub/Sub |
+| 🔒 **No double booking** | Row locks plus PostgreSQL `btree_gist` exclusion constraints on time ranges |
+| 🤖 **Wayzen RAG assistant** | pgvector retrieval, cited answers, and bookings that execute only after confirmation |
+| 🛡️ **Secure by default** | Argon2id passwords, cookie sessions with CSRF, rate limits and least-privilege DB role |
+| 👥 **Role-based access** | Customer, Staff and Admin dashboards |
+
+## 🏗️ Architecture
+
+```mermaid
+flowchart LR
+  U[Browser · React SPA] -- HTTPS + WebSocket --> A[FastAPI]
+  A --> P[(PostgreSQL<br/>pgvector · btree_gist)]
+  A <--> R[(Redis<br/>pub/sub · locks · rate limits)]
+  A --> W[Wayzen RAG]
+  W --> P
+```
+
+The SPA and the API are served from one origin, so session cookies stay first-party.
+
+## 🧭 What it does
 
 - Customers browse hospitals (by specialization and doctor), shops (by service and
   staff member) and hotels; book real free slots or rooms; receive a booking
